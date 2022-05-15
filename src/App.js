@@ -8,26 +8,40 @@ import { Main, DevFinder } from "./style-components/styles";
 function App() {
   const [user, setUser] = useState({});
   const [change, setChange] = useState(false);
+  const [input, setInput] = useState("");
 
-  const getUser = async () => {
-    const octokit = new Octokit({
-      auth: "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",
-    });
+  const getUser = async (search) => {
+    const octokit = new Octokit();
     try {
-      const me = await octokit.request("GET /users/nghuynh07", {});
-      // console.log(me);
-      setUser(me.data);
+      const me = await octokit.request(`GET /users/${`octocat` || { search }}`);
+      console.log(me);
+      const userData = { ...me.data };
+      setUser(userData);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const toggleTheme = (e) => {
-    console.log(e);
-    setChange(!change);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const octokit = new Octokit();
+    try {
+      const me = await octokit.request(`GET /users/${input}`);
+
+      const userData = { ...me.data };
+      setUser(userData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const onChange = (e) => {
+    setInput(e.target.value);
   };
 
-  console.log(change);
+  const toggleTheme = (e) => {
+    e.preventDefault();
+    setChange(!change);
+  };
 
   useEffect(() => {
     getUser();
@@ -37,7 +51,12 @@ function App() {
     <Main change={change}>
       <DevFinder>
         <TopComponent toggleTheme={toggleTheme} change={change} />
-        <MiddleComponent change={change} />
+        <MiddleComponent
+          change={change}
+          onSubmit={onSubmit}
+          onChange={onChange}
+          user={user}
+        />
         <BottomComponent user={user} change={change} />
       </DevFinder>
     </Main>

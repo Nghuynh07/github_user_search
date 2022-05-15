@@ -9,7 +9,7 @@ import {
 } from "../style-components/middleStyledComponents";
 import React from "react";
 
-const MiddleComponent = ({ change }) => {
+const MiddleComponent = ({ change, onSubmit, onChange, user }) => {
   return (
     <>
       {/* MID STARTS */}
@@ -20,17 +20,20 @@ const MiddleComponent = ({ change }) => {
             fill='#0079ff'
           />
         </SVG>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <InputContainer>
             <Input
               change={change}
               name='search'
               type='text'
+              onChange={onChange}
               placeholder='Search Github username...'
             />
-            <SearchResultText>No Results</SearchResultText>
+            {user && ""}
+
+            {!user && <SearchResultText>No Result</SearchResultText>}
           </InputContainer>
-          <Button>Search</Button>
+          <Button type='submit'>Search</Button>
         </Form>
       </Middle>
       {/* MID ENDS */}

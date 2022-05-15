@@ -37,29 +37,42 @@ const BottomComponent = ({ user, change }) => {
             </MobileAvatarContainer>
             <MainSectionOneWrapper>
               <div>
-                <MainSectionOneH1 change={change}>The Octocat</MainSectionOneH1>
-                <Octocat>@octocat</Octocat>
+                <MainSectionOneH1 change={change}>
+                  {user.name ? user.name : user.login}
+                </MainSectionOneH1>
+                <Octocat href={user.html_url}>@{user.login}</Octocat>
               </div>
-              <Joined change={change}>Joined 25 Jan 2011</Joined>
+              <Joined change={change}>Joined {user.created_at}</Joined>
             </MainSectionOneWrapper>
           </MainSectionOne>
-          <MainParagraph change={change}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-            odio. Quisque volutpat mattis eros.
-          </MainParagraph>
-
+          {user.bio ? (
+            <MainParagraph change={change}>{user.bio}</MainParagraph>
+          ) : (
+            <MainParagraph
+              change={change}
+              style={{ color: "var(--light-gray-color)" }}
+            >
+              This profile has no bio
+            </MainParagraph>
+          )}
           <MainSectionTwo change={change}>
             <div>
               <SectionTwoText change={change}>Repos</SectionTwoText>
-              <SectionTwoNumber change={change}>8</SectionTwoNumber>
+              <SectionTwoNumber change={change}>
+                {user.public_repos}
+              </SectionTwoNumber>
             </div>
             <div>
               <SectionTwoText change={change}>Followers</SectionTwoText>
-              <SectionTwoNumber change={change}>3938</SectionTwoNumber>
+              <SectionTwoNumber change={change}>
+                {user.followers}
+              </SectionTwoNumber>
             </div>
             <div>
               <SectionTwoText change={change}>Following</SectionTwoText>
-              <SectionTwoNumber change={change}>9</SectionTwoNumber>
+              <SectionTwoNumber change={change}>
+                {user.following}
+              </SectionTwoNumber>
             </div>
           </MainSectionTwo>
           <MainSectionThree change={change}>
@@ -71,7 +84,15 @@ const BottomComponent = ({ user, change }) => {
                   fill='#4b6a9b'
                 />
               </svg>
-              <p className={`${change ? "dark" : "light"}`}>San Francisco</p>
+              {user.location ? (
+                <p className={`${change ? "dark" : "light"}`}>
+                  {user.location}
+                </p>
+              ) : (
+                <p className={`${change ? "dark" : "light"} idle`}>
+                  Not Available
+                </p>
+              )}
             </SectionThreeWrapper>
             <SectionThreeWrapper>
               <svg height='18' width='20' xmlns='http://www.w3.org/2000/svg'>
@@ -81,7 +102,18 @@ const BottomComponent = ({ user, change }) => {
                   fill='#4b6a9b'
                 />
               </svg>
-              <p className={`${change ? "dark" : "light"}`}>Not Available</p>
+              {user.twitter_username ? (
+                <a
+                  href={`https://twitter.com/${user.twitter_username}`}
+                  className={`${change ? "dark" : "light"} link`}
+                >
+                  https://twitter.com/{user.twitter_username}
+                </a>
+              ) : (
+                <p className={`${change ? "dark" : "light"} idle`}>
+                  Not Available
+                </p>
+              )}
             </SectionThreeWrapper>
             <SectionThreeWrapper>
               <svg height='20' width='20' xmlns='http://www.w3.org/2000/svg'>
@@ -90,12 +122,18 @@ const BottomComponent = ({ user, change }) => {
                   <path d='M13.439 13.75a.401.401 0 00.006-.003c.659-1.204.788-2.586.48-3.933l-.002.002-.001-.001a5.434 5.434 0 00-2.19-3.124.3.3 0 00-.333.015c-.553.448-1.095 1.021-1.452 1.754a.243.243 0 00.096.317c.415.24.79.593 1.04 1.061h.001c.196.33.388.958.263 1.632-.116.894-1.019 1.714-1.736 2.453-.546.559-1.935 1.974-2.49 2.542a2.6 2.6 0 01-3.666.037 2.6 2.6 0 01-.038-3.666l1.521-1.564A.266.266 0 005 11.004c-.338-1.036-.43-2.432-.217-3.51.006-.03-.031-.049-.053-.027l-3.179 3.245c-2.083 2.126-2.066 5.588.04 7.693 2.125 2.083 5.57 2.048 7.653-.078.723-.81 3.821-3.678 4.195-4.577z' />
                 </g>
               </svg>
-              <a
-                className={`${change ? "dark" : "light"}`}
-                href='https://github.blog'
-              >
-                https://github.blog
-              </a>
+              {user.blog ? (
+                <a
+                  className={`${change ? "dark" : "light"} link`}
+                  href={user.blog}
+                >
+                  {user.blog}
+                </a>
+              ) : (
+                <p className={`${change ? "dark" : "light"} idle`}>
+                  Not Available
+                </p>
+              )}
             </SectionThreeWrapper>
             <SectionThreeWrapper>
               <svg height='20' width='20' xmlns='http://www.w3.org/2000/svg'>
@@ -106,12 +144,18 @@ const BottomComponent = ({ user, change }) => {
                   />
                 </g>
               </svg>
-              <a
-                className={`${change ? "dark" : "light"}`}
-                href='https://github.blog'
-              >
-                @github
-              </a>
+              {user.company ? (
+                <a
+                  className={`${change ? "dark" : "light"} link`}
+                  href={user.company}
+                >
+                  {user.company}
+                </a>
+              ) : (
+                <p className={`${change ? "dark" : "light"} idle`}>
+                  Not Available
+                </p>
+              )}
             </SectionThreeWrapper>
           </MainSectionThree>
         </MainContentContainer>

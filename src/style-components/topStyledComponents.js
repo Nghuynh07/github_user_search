@@ -21,12 +21,17 @@ export const TopToggle = styled.div`
   transition: color 0.2s;
   &:hover .dark {
     color: ${(props) =>
-      props.change ? "var(--hover-dark-color)" : "var(--black-color)"};
+      !props.change ? "var(--hover-dark-color)" : "var(--black-color)"};
     transition: color 0.2s;
   }
 
   &:hover .moon {
-    fill: var(--black-color);
+    fill: var(--hover-dark-color);
+    transition: color 0.2s;
+  }
+
+  &:hover .sun {
+    fill: var(--hover-dark-color);
     transition: color 0.2s;
   }
 

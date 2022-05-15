@@ -37,10 +37,6 @@ html {
   font-family: "Space Mono", monospace;
 }
 
-.sunSVG {
-  display: none;
-}
-
 .mobile-avatar {
   width: 100%;
   border-radius: 50%;
@@ -63,4 +59,8 @@ html {
 .light {
   color: var(--light-pale-blue);
   fill: var(--white-color);
+}
+
+.idle {
+  color: var(--light-gray-color);
 }

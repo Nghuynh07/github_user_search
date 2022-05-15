@@ -73,7 +73,7 @@ export const MainSectionOneH1 = styled.h1`
     props.change ? "var(--white-color)" : "var(--light-dark-gray)"};
 `;
 
-export const Octocat = styled.p`
+export const Octocat = styled.a`
   color: var(--primary-color);
   font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 300;
