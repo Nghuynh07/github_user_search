@@ -9,7 +9,7 @@ import {
 } from "../style-components/middleStyledComponents";
 import React from "react";
 
-const MiddleComponent = ({ change, onSubmit, onChange, user }) => {
+const MiddleComponent = ({ change, onSubmit, onChange, user, error }) => {
   return (
     <>
       {/* MID STARTS */}
@@ -29,9 +29,8 @@ const MiddleComponent = ({ change, onSubmit, onChange, user }) => {
               onChange={onChange}
               placeholder='Search Github username...'
             />
-            {user && ""}
 
-            {!user && <SearchResultText>No Result</SearchResultText>}
+            {<SearchResultText>{error}</SearchResultText>}
           </InputContainer>
           <Button type='submit'>Search</Button>
         </Form>

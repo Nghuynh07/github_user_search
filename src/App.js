@@ -9,12 +9,11 @@ function App() {
   const [user, setUser] = useState({});
   const [change, setChange] = useState(false);
   const [input, setInput] = useState("");
-
+  const [error, setError] = useState("");
   const getUser = async (search) => {
     const octokit = new Octokit();
     try {
       const me = await octokit.request(`GET /users/${`octocat` || { search }}`);
-      console.log(me);
       const userData = { ...me.data };
       setUser(userData);
     } catch (err) {
@@ -26,12 +25,19 @@ function App() {
     e.preventDefault();
     const octokit = new Octokit();
     try {
+      if (!input) {
+        setError("No Result");
+      }
+
       const me = await octokit.request(`GET /users/${input}`);
 
       const userData = { ...me.data };
       setUser(userData);
     } catch (err) {
-      console.log(err);
+      // console.log(err.status);
+      if (error.status === "404") {
+        setError("No Result");
+      }
     }
   };
   const onChange = (e) => {
@@ -40,6 +46,7 @@ function App() {
 
   const toggleTheme = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setChange(!change);
   };
 
@@ -56,6 +63,7 @@ function App() {
           onSubmit={onSubmit}
           onChange={onChange}
           user={user}
+          error={error}
         />
         <BottomComponent user={user} change={change} />
       </DevFinder>

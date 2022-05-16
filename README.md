@@ -42,7 +42,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://github.com/Nghuynh07/github_user_search)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Add live site URL here](https://unique-blini-71039f.netlify.app/)
 
 ## My process
 
@@ -61,9 +61,9 @@ Users should be able to:
 - I learned about styled components and passing in props
 - Also my first time attempting dark/light mode and style component with react useState hook makes it easier to do
 
-<!-- - **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS. -->
-
 ### Continued development
+
+- I did not attempt to do the "prefers-color-scheme". This is something that will need to come back to after I have more time to play around with it.
 
 ### Useful resources
 

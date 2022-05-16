@@ -37,6 +37,15 @@ html {
   font-family: "Space Mono", monospace;
 }
 
+.day {
+  background-color: var(--main-background-color);
+  color: var(--black-color);
+}
+.night {
+  background-color: var(--secondary-color);
+  color: var(--white-color);
+}
+
 .mobile-avatar {
   width: 100%;
   border-radius: 50%;

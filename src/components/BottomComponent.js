@@ -19,6 +19,12 @@ import {
 import React from "react";
 
 const BottomComponent = ({ user, change }) => {
+  const date = new Date(user.created_at).toLocaleDateString("en-us", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
   return (
     <>
       {/* BOTTOM STARTS */}
@@ -42,7 +48,7 @@ const BottomComponent = ({ user, change }) => {
                 </MainSectionOneH1>
                 <Octocat href={user.html_url}>@{user.login}</Octocat>
               </div>
-              <Joined change={change}>Joined {user.created_at}</Joined>
+              <Joined change={change}>Joined {date}</Joined>
             </MainSectionOneWrapper>
           </MainSectionOne>
           {user.bio ? (

@@ -9,9 +9,9 @@ const TopComponent = ({ toggleTheme, change }) => {
   return (
     <>
       {/* TOP STARTS */}
-      <Top className='top' onClick={toggleTheme} change={change}>
+      <Top className='top' change={change}>
         <TopHeading change={change}>devfinder</TopHeading>
-        <TopToggle className='toggle'>
+        <TopToggle className='toggle' onClick={toggleTheme}>
           <TopH4 className='dark' change={change}>
             {change ? "Light" : "Dark"}
           </TopH4>
